@@ -20,4 +20,10 @@ class UserViewModel @Inject constructor(
             userRepository.addUser(user)
         }
     }
+
+    fun updateUser(user: User) {
+        viewModelScope.launch {
+            userRepository.updateUser(user)
+        }
+    }
 }

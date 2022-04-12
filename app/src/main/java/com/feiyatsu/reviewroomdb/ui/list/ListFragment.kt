@@ -30,7 +30,12 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         _binding = FragmentListBinding.inflate(inflater, container, false)
 
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addFragment)
+            // Without sending arguments we can just do this
+            // findNavController().navigate(R.id.action_listFragment_to_addFragment)
+
+            // With arguments, have to set the action
+            val action = ListFragmentDirections.actionListFragmentToAddFragment(null)
+            findNavController().navigate(action)
         }
 
         // RecyclerView

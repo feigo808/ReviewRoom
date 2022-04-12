@@ -16,11 +16,15 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.feiyatsu.reviewroomdb.ui.add.AddFragment"
+        android:name="com.feiyatsu.reviewroomdb.ui.add.AddUpdateFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" >
         <action
             android:id="@+id/action_addFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.feiyatsu.reviewroomdb.data.User"
+            app:nullable="true" />
     </fragment>
 </navigation>

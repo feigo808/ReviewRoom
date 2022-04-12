@@ -3,6 +3,7 @@ package com.feiyatsu.reviewroomdb.ui.list
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.feiyatsu.reviewroomdb.data.User
 import com.feiyatsu.reviewroomdb.databinding.UserRowBinding
@@ -42,6 +43,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.UserViewHolder>() {
                 textViewFirstName.text = user.firstName.toString()
                 textViewLastName.text = user.lastName.toString()
                 textViewAge.text = user.age.toString()
+            }
+
+            itemBinding.layoutUser.setOnClickListener {
+                val action = ListFragmentDirections.actionListFragmentToAddFragment(this.user)
+                itemBinding.root.findNavController().navigate(action)
             }
         }
     }
