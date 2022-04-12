@@ -13,13 +13,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    private val userDao: UserDao,
     private val userRepository: UserRepository
 ) : ViewModel() {
     private val readAllData: LiveData<List<User>> = userRepository.readAllData
 
     fun addUser(user: User) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             userRepository.addUser(user)
         }
     }

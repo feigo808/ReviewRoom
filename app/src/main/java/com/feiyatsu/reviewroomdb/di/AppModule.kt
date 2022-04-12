@@ -1,6 +1,7 @@
 package com.feiyatsu.reviewroomdb.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.feiyatsu.reviewroomdb.data.UserDao
 import com.feiyatsu.reviewroomdb.data.UserDatabase
@@ -8,6 +9,7 @@ import com.feiyatsu.reviewroomdb.data.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -18,9 +20,8 @@ object AppModule {
     @Provides
     @Singleton
     fun providesDatabase(
-        app: Application
-    ) = Room.databaseBuilder(app, UserDatabase::class.java, "user_database")
-        .fallbackToDestructiveMigration()
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(context, UserDatabase::class.java, "user_database")
         .build()
 
     @Provides
