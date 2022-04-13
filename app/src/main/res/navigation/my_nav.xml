@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.feiyatsu.reviewroomdb.ui.add.AddUpdateFragment"
+        android:name="com.feiyatsu.reviewroomdb.ui.edit.AddUpdateFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" >
+        tools:layout="@layout/fragment_add_update" >
         <action
             android:id="@+id/action_addFragment_to_listFragment"
             app:destination="@id/listFragment" />

@@ -8,4 +8,5 @@
     <string name="age">Age</string>
     <string name="add">add</string>
     <string name="update">update</string>
+    <string name="delete">Delete</string>
 </resources>
