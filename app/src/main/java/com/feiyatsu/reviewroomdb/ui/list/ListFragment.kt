@@ -1,9 +1,9 @@
 package com.feiyatsu.reviewroomdb.ui.list
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -28,6 +28,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentListBinding.inflate(inflater, container, false)
+
+        // Add menu delete
+        setHasOptionsMenu(true)
 
         binding.floatingActionButton.setOnClickListener {
             // Without sending arguments we can just do this
@@ -54,5 +57,38 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete) {
+            deleteAllData()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAllData() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Are you sure you want to Delete all users?")
+            .setTitle("Delete all users on the list ?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialog, id ->
+                // Delete selected user from database
+                userViewModel.deleteAllData()
+                Toast.makeText(
+                    requireContext(),
+                    "Successfully deleted all users!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                // Dismiss the dialog
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
     }
 }
